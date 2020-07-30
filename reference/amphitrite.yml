@@ -1,0 +1,3271 @@
+openapi: 3.0.0
+info:
+  version: 1.0.1
+  title: M1 Frontend
+  description: ''
+servers:
+  - description: Baogam
+    url: 'https://baogam.gobizdev.com'
+paths:
+  /api/customer/draft_shipments:
+    get:
+      summary: Get Draft Shipment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: Draft-Shipment
+                type: object
+                x-tags:
+                  - model
+                description: ''
+                properties:
+                  id:
+                    type: string
+                  exchangeRate:
+                    type: number
+                  totalFee:
+                    type: number
+                  configGroupId:
+                    type: string
+                  addressId:
+                    type: integer
+                  services:
+                    type: array
+                    items:
+                      title: Shipment-Service
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        code:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        position:
+                          type: integer
+                        requires:
+                          type: array
+                          items:
+                            type: string
+                        excludes:
+                          type: array
+                          items:
+                            type: string
+                        serviceGroup:
+                          title: Service-Group
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            code:
+                              type: string
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            position:
+                              type: integer
+                            single:
+                              type: boolean
+                            required:
+                              type: boolean
+                            createdBy:
+                              type: string
+                            createdAt:
+                              type: string
+                            modifiedBy:
+                              type: string
+                            modifiedAt:
+                              type: string
+                          description: Service Group
+                          x-tags:
+                            - model
+                        defaultApplied:
+                          type: boolean
+                        needApprove:
+                          type: boolean
+                        shipping:
+                          type: boolean
+                        approved:
+                          type: boolean
+                      x-tags:
+                        - model
+                  fees:
+                    type: array
+                    items:
+                      title: Draft-Shipment-Fee
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        feeType:
+                          type: string
+                        service:
+                          type: string
+                        provisionalAmount:
+                          type: number
+                      x-tags:
+                        - model
+                      description: Draft shipment fee
+                  createdBy:
+                    type: string
+                  createdAt:
+                    type: string
+                  modifiedBy:
+                    type: string
+                  modifiedAt:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    createdAt: '2019-12-31T02:21:12.115Z'
+                    createdBy: lanhuong
+                    modifiedAt: '2019-12-31T02:21:37.993Z'
+                    modifiedBy: lanhuong
+                    id: 8e3a07d6-4301-4736-a17f-0c9b58cfd481
+                    exchangeRate: 3000
+                    totalFee: 11000
+                    configGroupId: b586dfd3-5443-4f0b-85b0-c20db89145da
+                    addressId: 1003
+                    services:
+                      - createdAt: '2019-05-16T11:20:30.688199Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: 2
+                        code: cargo_insurance
+                        name: Phí bảo hiểm hàng hóa
+                        description: null
+                        position: 1
+                        requires: []
+                        excludes: []
+                        serviceGroup: null
+                        defaultApplied: false
+                        needApprove: false
+                        shipping: false
+                        approved: null
+                      - createdAt: '2019-05-16T11:20:30.688199Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: 12
+                        code: standard_packaging
+                        name: Đóng gỗ chung
+                        description: null
+                        position: 6
+                        requires: []
+                        excludes: []
+                        serviceGroup:
+                          createdAt: '2019-09-27T09:21:10.503146Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 1
+                          code: packaging_group
+                          name: Dịch vụ đóng hàng
+                          description: null
+                          position: null
+                          single: true
+                          required: false
+                        defaultApplied: false
+                        needApprove: false
+                        shipping: false
+                        approved: null
+                      - createdAt: '2019-05-16T11:20:30.688199Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: 8
+                        code: direct_delivery
+                        name: Vận chuyển thẳng
+                        description: null
+                        position: 2
+                        requires: []
+                        excludes:
+                          - eco_shipping
+                        serviceGroup: null
+                        defaultApplied: false
+                        needApprove: true
+                        shipping: false
+                        approved: null
+                      - createdAt: '2019-05-16T11:20:30.688199Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: 3
+                        code: express_shipping
+                        name: Vận chuyển nhanh
+                        description: null
+                        position: 3
+                        requires: []
+                        excludes: []
+                        serviceGroup:
+                          createdAt: '2019-09-27T09:21:10.503146Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 2
+                          code: shipping_group
+                          name: Dịch vụ chuyển phát
+                          description: null
+                          position: null
+                          single: true
+                          required: true
+                        defaultApplied: false
+                        needApprove: false
+                        shipping: true
+                        approved: null
+                    fees:
+                      - id: 8818d42b-6457-4c88-a8b8-fd53f0685661
+                        feeType: management
+                        service: null
+                        provisionalAmount: 6000
+                      - id: 66916040-4d82-4070-adcd-204d09b336bd
+                        feeType: cargo_insurance
+                        service: cargo_insurance
+                        provisionalAmount: 5000
+                      - id: ef68cf29-f4f7-4af1-9660-207e379e58c8
+                        feeType: express_shipping
+                        service: express_shipping
+                        provisionalAmount: null
+                      - id: eda2da30-e6f6-47f7-919d-056c9a771595
+                        feeType: standard_packaging
+                        service: standard_packaging
+                        provisionalAmount: null
+      operationId: get-api-customer-draft_shipments
+      tags:
+        - Draft-Shipment
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+    post:
+      summary: Create Draft Shipment
+      operationId: post-api-customer-draft_shipments
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: Draft-Shipment
+                type: object
+                x-tags:
+                  - model
+                description: ''
+                properties:
+                  id:
+                    type: string
+                  exchangeRate:
+                    type: number
+                  totalFee:
+                    type: number
+                  configGroupId:
+                    type: string
+                  addressId:
+                    type: integer
+                  services:
+                    type: array
+                    items:
+                      title: Shipment-Service
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        code:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        position:
+                          type: integer
+                        requires:
+                          type: array
+                          items:
+                            type: string
+                        excludes:
+                          type: array
+                          items:
+                            type: string
+                        serviceGroup:
+                          title: Service-Group
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            code:
+                              type: string
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            position:
+                              type: integer
+                            single:
+                              type: boolean
+                            required:
+                              type: boolean
+                            createdBy:
+                              type: string
+                            createdAt:
+                              type: string
+                            modifiedBy:
+                              type: string
+                            modifiedAt:
+                              type: string
+                          description: Service Group
+                          x-tags:
+                            - model
+                        defaultApplied:
+                          type: boolean
+                        needApprove:
+                          type: boolean
+                        shipping:
+                          type: boolean
+                        approved:
+                          type: boolean
+                      x-tags:
+                        - model
+                  fees:
+                    type: array
+                    items:
+                      title: Draft-Shipment-Fee
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        feeType:
+                          type: string
+                        service:
+                          type: string
+                        provisionalAmount:
+                          type: number
+                      x-tags:
+                        - model
+                      description: Draft shipment fee
+                  createdBy:
+                    type: string
+                  createdAt:
+                    type: string
+                  modifiedBy:
+                    type: string
+                  modifiedAt:
+                    type: string
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                services:
+                  type: array
+                  items:
+                    type: string
+            examples:
+              example-1:
+                value:
+                  services:
+                    - inspection
+                    - express_shipping
+        description: ''
+      tags:
+        - Draft-Shipment
+  /api/customer/shipments:
+    post:
+      summary: 1. Create Shipment
+      operationId: post-api-customer-shipments
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: Customer-Shipment
+                type: object
+                x-tags:
+                  - model
+                properties:
+                  customer:
+                    title: Simple-Customer
+                    type: object
+                    x-tags:
+                      - model
+                    properties:
+                      id:
+                        type: integer
+                      username:
+                        type: string
+                      email:
+                        type: string
+                      fullname:
+                        type: string
+                      nickname:
+                        type: string
+                      avatar:
+                        type: string
+                      phone:
+                        type: string
+                      code:
+                        type: string
+                      dob:
+                        type: string
+                      contactAddress:
+                        type: string
+                      gender:
+                        type: string
+                      customerStatus:
+                        type: string
+                      customerGroup:
+                        title: Customer-Group
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          tenantId:
+                            type: string
+                          code:
+                            type: string
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          configGroupId:
+                            type: string
+                          createdAt:
+                            type: string
+                          createdBy:
+                            type: string
+                          modifiedAt:
+                            type: string
+                          modifiedBy:
+                            type: string
+                        x-examples:
+                          example-1:
+                            createdAt: '2019-10-18T04:39:06.958080Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: '2'
+                            tenantId: da7ad3a6-f2b9-4a48-9422-2b71c63572a3
+                            code: default
+                            name: Nhóm khách hàng mặc định
+                            description: 'nhóm mặc định, sử dụng bảng phí mặc định'
+                            configGroupId: 672b7fbe-6edf-4da8-af06-6bdba181870c
+                        x-tags:
+                          - model
+                      customerLevel:
+                        title: Customer-Level
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          minPoint:
+                            type: number
+                          maxPoint:
+                            type: number
+                          imageUrl:
+                            type: string
+                          createdAt:
+                            type: string
+                          createdBy:
+                            type: string
+                          modifiedAt:
+                            type: string
+                          modifiedBy:
+                            type: string
+                        x-examples:
+                          example-1:
+                            createdAt: '2019-11-21T09:14:23.141Z'
+                            createdBy: ngantk
+                            modifiedAt: '2019-12-03T03:27:39.816Z'
+                            modifiedBy: ngantk
+                            id: d38dc26c-3b66-4c23-93b7-8da7587fb5e1
+                            name: 'VIP '
+                            minPoint: 11
+                            maxPoint: 100
+                            imageUrl: 'https://i.imgur.com/1WDrGZM.png'
+                      rewardPoint:
+                        type: number
+                    x-examples:
+                      example-1:
+                        avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                        code: NU1000005
+                        contactAddress: ''
+                        customerGroup:
+                          createdAt: '2019-10-18T04:39:06.958080Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: '2'
+                          tenantId: da7ad3a6-f2b9-4a48-9422-2b71c63572a3
+                          code: default
+                          name: Nhóm khách hàng mặc định
+                          description: 'nhóm mặc định, sử dụng bảng phí mặc định'
+                          configGroupId: 672b7fbe-6edf-4da8-af06-6bdba181870c
+                        customerLevel:
+                          createdAt: '2019-11-21T09:14:23.141Z'
+                          createdBy: ngantk
+                          modifiedAt: '2019-12-03T03:27:39.816Z'
+                          modifiedBy: ngantk
+                          id: d38dc26c-3b66-4c23-93b7-8da7587fb5e1
+                          name: 'VIP '
+                          minPoint: 11
+                          maxPoint: 100
+                          imageUrl: 'https://i.imgur.com/1WDrGZM.png'
+                        customerStatus: ACTIVE
+                        dob: '2019-12-12T00:00:00Z'
+                        email: nguyenthilanhuong@gobiz.vn
+                        fullname: Lan Hương
+                        gender: female
+                        id: 23
+                        nickname: Lan Hương
+                        phone: 12345678
+                        rewardPoint: 95
+                        username: lanhuong
+                  services:
+                    type: array
+                    items:
+                      title: Shipment-Service
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        code:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        position:
+                          type: integer
+                        requires:
+                          type: array
+                          items:
+                            type: string
+                        excludes:
+                          type: array
+                          items:
+                            type: string
+                        serviceGroup:
+                          title: Service-Group
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            code:
+                              type: string
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            position:
+                              type: integer
+                            single:
+                              type: boolean
+                            required:
+                              type: boolean
+                            createdBy:
+                              type: string
+                            createdAt:
+                              type: string
+                            modifiedBy:
+                              type: string
+                            modifiedAt:
+                              type: string
+                          description: Service Group
+                          x-tags:
+                            - model
+                        defaultApplied:
+                          type: boolean
+                        needApprove:
+                          type: boolean
+                        shipping:
+                          type: boolean
+                        approved:
+                          type: boolean
+                      x-tags:
+                        - model
+                  image:
+                    type: string
+                  status:
+                    type: string
+                  code:
+                    type: string
+                  remark:
+                    type: string
+                  note:
+                    type: string
+                  provisionalAmount:
+                    type: number
+                  totalFee:
+                    type: number
+                  totalUnpaid:
+                    type: number
+                  timestamp:
+                    type: string
+                  totalValue:
+                    type: number
+                  address:
+                    title: Shipment-Address
+                    type: object
+                    x-tags:
+                      - model
+                    properties:
+                      id:
+                        type: integer
+                      fullname:
+                        type: string
+                      phone:
+                        type: string
+                      address:
+                        type: string
+                      location:
+                        title: Location
+                        type: object
+                        x-tags:
+                          - model
+                        properties:
+                          id:
+                            type: string
+                          code:
+                            type: string
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          display:
+                            type: string
+                          position:
+                            type: integer
+                          type:
+                            type: string
+                          parent:
+                            $ref: '#/components/schemas/Location'
+                        x-examples:
+                          example-1:
+                            createdAt: '2019-09-27T09:21:10.503146Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: '11304'
+                            code: '00343'
+                            name: Phường Nhân Chính
+                            description: null
+                            display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+                            position: 5
+                            type: WARD
+                            parent:
+                              createdAt: '2019-09-27T09:21:10.503146Z'
+                              createdBy: chaos
+                              modifiedAt: null
+                              modifiedBy: null
+                              id: '132'
+                              code: 9
+                              name: Quận Thanh Xuân
+                              description: null
+                              display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+                              position: 2
+                              type: DISTRICT
+                              parent:
+                                createdAt: '2019-09-27T09:21:10.503146Z'
+                                createdBy: chaos
+                                modifiedAt: null
+                                modifiedBy: null
+                                id: '35'
+                                code: '01'
+                                name: Thành phố Hà Nội
+                                description: null
+                                display: Thành phố Hà Nội
+                                position: 0
+                                type: PROVINCE
+                                parent: null
+                                language: null
+                              language: null
+                            language: null
+                      note:
+                        type: string
+                      hash:
+                        type: string
+                      createdBy:
+                        type: string
+                      createdAt:
+                        type: string
+                      modifiedBy:
+                        type: string
+                      modifiedAt:
+                        type: string
+                    x-examples:
+                      example-1:
+                        createdAt: '2020-01-03T03:53:24.450Z'
+                        createdBy: lanhuong
+                        modifiedAt: '2020-01-03T03:53:24.450Z'
+                        modifiedBy: lanhuong
+                        id: 26
+                        fullname: Lan Hương
+                        phone: 988888888
+                        address: 164 Khuất Duy Tiến
+                        location:
+                          createdAt: '2019-09-27T09:21:10.503146Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: '11304'
+                          code: '00343'
+                          name: Phường Nhân Chính
+                          description: null
+                          display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+                          position: 5
+                          type: WARD
+                          parent:
+                            createdAt: '2019-09-27T09:21:10.503146Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: '132'
+                            code: 9
+                            name: Quận Thanh Xuân
+                            description: null
+                            display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+                            position: 2
+                            type: DISTRICT
+                            parent:
+                              createdAt: '2019-09-27T09:21:10.503146Z'
+                              createdBy: chaos
+                              modifiedAt: null
+                              modifiedBy: null
+                              id: '35'
+                              code: '01'
+                              name: Thành phố Hà Nội
+                              description: null
+                              display: Thành phố Hà Nội
+                              position: 0
+                              type: PROVINCE
+                              parent: null
+                              language: null
+                            language: null
+                          language: null
+                        note: ''
+                        hash: 394a9ed64afc273946ba341962433873
+                  exchangeRate:
+                    type: number
+                  actualWeight:
+                    type: number
+                  volumetric:
+                    type: number
+                  declareValue:
+                    type: number
+                x-examples:
+                  example-1:
+                    createdAt: '2020-01-03T03:53:24.444Z'
+                    createdBy: lanhuong
+                    modifiedAt: '2020-01-03T03:53:24.471Z'
+                    modifiedBy: lanhuong
+                    customer:
+                      avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                      code: NU1000005
+                      contactAddress: ''
+                      customerGroup: null
+                      customerLevel: null
+                      customerStatus: ACTIVE
+                      dob: '2019-12-12T00:00:00Z'
+                      email: nguyenthilanhuong@gobiz.vn
+                      fullname: Lan Hương
+                      gender: female
+                      id: 23
+                      nickname: Lan Hương
+                      phone: 12345678
+                      rewardPoint: null
+                      username: lanhuong
+                    services:
+                      - createdAt: '2019-05-16T11:20:30.688199Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: 1
+                        code: cargo_insurance
+                        name: Phí bảo hiểm hàng hóa
+                        description: null
+                        position: 1
+                        requires: []
+                        excludes: []
+                        serviceGroup: null
+                        defaultApplied: false
+                        needApprove: false
+                        shipping: false
+                        approved: true
+                      - createdAt: '2019-05-16T11:20:30.688199Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: 4
+                        code: express_shipping
+                        name: Vận chuyển nhanh
+                        description: null
+                        position: 3
+                        requires: []
+                        excludes: []
+                        serviceGroup:
+                          createdAt: '2019-09-27T09:21:10.503146Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 2
+                          code: shipping_group
+                          name: Dịch vụ chuyển phát
+                          description: null
+                          position: null
+                          single: true
+                          required: true
+                        defaultApplied: false
+                        needApprove: false
+                        shipping: true
+                        approved: true
+                      - createdAt: '2019-05-16T11:20:30.688199Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: 11
+                        code: standard_packaging
+                        name: Đóng gỗ chung
+                        description: null
+                        position: 6
+                        requires: []
+                        excludes: []
+                        serviceGroup:
+                          createdAt: '2019-09-27T09:21:10.503146Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 1
+                          code: packaging_group
+                          name: Dịch vụ đóng hàng
+                          description: null
+                          position: null
+                          single: true
+                          required: false
+                        defaultApplied: false
+                        needApprove: false
+                        shipping: false
+                        approved: true
+                    image: null
+                    status: ACCEPTED
+                    code: BG0HZRV_KG
+                    remark: null
+                    note: null
+                    provisionalAmount: 10000
+                    totalFee: 10000
+                    totalUnpaid: 10000
+                    timestamp: '2020-01-03T03:53:24.418Z'
+                    totalValue: null
+                    address:
+                      createdAt: '2020-01-03T03:53:24.450Z'
+                      createdBy: lanhuong
+                      modifiedAt: '2020-01-03T03:53:24.450Z'
+                      modifiedBy: lanhuong
+                      id: 26
+                      fullname: Lan Hương
+                      phone: 988888888
+                      address: 164 Khuất Duy Tiến
+                      location:
+                        createdAt: '2019-09-27T09:21:10.503146Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: '11304'
+                        code: '00343'
+                        name: Phường Nhân Chính
+                        description: null
+                        display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+                        position: 5
+                        type: WARD
+                        parent:
+                          createdAt: '2019-09-27T09:21:10.503146Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: '132'
+                          code: 9
+                          name: Quận Thanh Xuân
+                          description: null
+                          display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+                          position: 2
+                          type: DISTRICT
+                          parent:
+                            createdAt: '2019-09-27T09:21:10.503146Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: '35'
+                            code: '01'
+                            name: Thành phố Hà Nội
+                            description: null
+                            display: Thành phố Hà Nội
+                            position: 0
+                            type: PROVINCE
+                            parent: null
+                            language: null
+                          language: null
+                        language: null
+                      note: ''
+                      hash: 394a9ed64afc273946ba341962433873
+                    exchangeRate: 3000
+                    actualWeight: null
+                    volumetric: null
+                    declareValue: null
+              examples:
+                example-1:
+                  value:
+                    createdAt: '2020-01-03T03:53:24.444Z'
+                    createdBy: lanhuong
+                    modifiedAt: '2020-01-03T03:53:24.471Z'
+                    modifiedBy: lanhuong
+                    customer:
+                      avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                      code: NU1000005
+                      contactAddress: ''
+                      customerGroup: null
+                      customerLevel: null
+                      customerStatus: ACTIVE
+                      dob: '2019-12-12T00:00:00Z'
+                      email: nguyenthilanhuong@gobiz.vn
+                      fullname: Lan Hương
+                      gender: female
+                      id: 23
+                      nickname: Lan Hương
+                      phone: 12345678
+                      rewardPoint: null
+                      username: lanhuong
+                    services:
+                      - createdAt: '2019-05-16T11:20:30.688199Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: 1
+                        code: cargo_insurance
+                        name: Phí bảo hiểm hàng hóa
+                        description: null
+                        position: 1
+                        requires: []
+                        excludes: []
+                        serviceGroup: null
+                        defaultApplied: false
+                        needApprove: false
+                        shipping: false
+                        approved: true
+                      - createdAt: '2019-05-16T11:20:30.688199Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: 4
+                        code: express_shipping
+                        name: Vận chuyển nhanh
+                        description: null
+                        position: 3
+                        requires: []
+                        excludes: []
+                        serviceGroup:
+                          createdAt: '2019-09-27T09:21:10.503146Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 2
+                          code: shipping_group
+                          name: Dịch vụ chuyển phát
+                          description: null
+                          position: null
+                          single: true
+                          required: true
+                        defaultApplied: false
+                        needApprove: false
+                        shipping: true
+                        approved: true
+                      - createdAt: '2019-05-16T11:20:30.688199Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: 11
+                        code: standard_packaging
+                        name: Đóng gỗ chung
+                        description: null
+                        position: 6
+                        requires: []
+                        excludes: []
+                        serviceGroup:
+                          createdAt: '2019-09-27T09:21:10.503146Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 1
+                          code: packaging_group
+                          name: Dịch vụ đóng hàng
+                          description: null
+                          position: null
+                          single: true
+                          required: false
+                        defaultApplied: false
+                        needApprove: false
+                        shipping: false
+                        approved: true
+                    image: null
+                    status: ACCEPTED
+                    code: BG0HZRV_KG
+                    remark: null
+                    note: null
+                    provisionalAmount: 10000
+                    totalFee: 10000
+                    totalUnpaid: 10000
+                    timestamp: '2020-01-03T03:53:24.418Z'
+                    totalValue: null
+                    address:
+                      createdAt: '2020-01-03T03:53:24.450Z'
+                      createdBy: lanhuong
+                      modifiedAt: '2020-01-03T03:53:24.450Z'
+                      modifiedBy: lanhuong
+                      id: 26
+                      fullname: Lan Hương
+                      phone: 988888888
+                      address: 164 Khuất Duy Tiến
+                      location:
+                        createdAt: '2019-09-27T09:21:10.503146Z'
+                        createdBy: chaos
+                        modifiedAt: null
+                        modifiedBy: null
+                        id: '11304'
+                        code: '00343'
+                        name: Phường Nhân Chính
+                        description: null
+                        display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+                        position: 5
+                        type: WARD
+                        parent:
+                          createdAt: '2019-09-27T09:21:10.503146Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: '132'
+                          code: 9
+                          name: Quận Thanh Xuân
+                          description: null
+                          display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+                          position: 2
+                          type: DISTRICT
+                          parent:
+                            createdAt: '2019-09-27T09:21:10.503146Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: '35'
+                            code: '01'
+                            name: Thành phố Hà Nội
+                            description: null
+                            display: Thành phố Hà Nội
+                            position: 0
+                            type: PROVINCE
+                            parent: null
+                            language: null
+                          language: null
+                        language: null
+                      note: ''
+                      hash: 394a9ed64afc273946ba341962433873
+                    exchangeRate: 3000
+                    actualWeight: null
+                    volumetric: null
+                    declareValue: null
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  status:
+                    type: string
+                  detail:
+                    type: string
+              examples:
+                draft_shipment_not_null:
+                  value:
+                    title: draft_shipment_not_null
+                    status: 400
+                    detail: Draft Shipment ID must be not empty
+                config_group_changed:
+                  value:
+                    title: config_group_changed
+                    status: 400
+                    detail: 'Config group changed, new config is ...'
+                warehouse_location_not_mapped:
+                  value:
+                    title: warehouse_location_not_mapped
+                    status: 400
+                    detail: Can not map warehouse with location ...
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  status:
+                    type: string
+                  detail:
+                    type: string
+              examples:
+                draft_shipment_not_found:
+                  value:
+                    title: draft_shipment_not_found
+                    status: 400
+                    detail: Draft shipment not found
+                address_not_found:
+                  value:
+                    title: address_not_found
+                    status: 400
+                    detail: Address id must not be null
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                draftShipmentId:
+                  type: string
+            examples:
+              example-1:
+                value:
+                  draftShipmentId: c87e6fbb-88e5-4e98-9145-048fd535afa8
+      tags:
+        - Shipment
+    get:
+      summary: 2. Get list Shipment
+      operationId: get-api-customer-shipments
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  title: Customer-Shipment
+                  type: object
+                  x-tags:
+                    - model
+                  properties:
+                    customer:
+                      title: Simple-Customer
+                      type: object
+                      x-tags:
+                        - model
+                      properties:
+                        id:
+                          type: integer
+                        username:
+                          type: string
+                        email:
+                          type: string
+                        fullname:
+                          type: string
+                        nickname:
+                          type: string
+                        avatar:
+                          type: string
+                        phone:
+                          type: string
+                        code:
+                          type: string
+                        dob:
+                          type: string
+                        contactAddress:
+                          type: string
+                        gender:
+                          type: string
+                        customerStatus:
+                          type: string
+                        customerGroup:
+                          title: Customer-Group
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            tenantId:
+                              type: string
+                            code:
+                              type: string
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            configGroupId:
+                              type: string
+                            createdAt:
+                              type: string
+                            createdBy:
+                              type: string
+                            modifiedAt:
+                              type: string
+                            modifiedBy:
+                              type: string
+                          x-examples:
+                            example-1:
+                              createdAt: '2019-10-18T04:39:06.958080Z'
+                              createdBy: chaos
+                              modifiedAt: null
+                              modifiedBy: null
+                              id: '2'
+                              tenantId: da7ad3a6-f2b9-4a48-9422-2b71c63572a3
+                              code: default
+                              name: Nhóm khách hàng mặc định
+                              description: 'nhóm mặc định, sử dụng bảng phí mặc định'
+                              configGroupId: 672b7fbe-6edf-4da8-af06-6bdba181870c
+                          x-tags:
+                            - model
+                        customerLevel:
+                          title: Customer-Level
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            minPoint:
+                              type: number
+                            maxPoint:
+                              type: number
+                            imageUrl:
+                              type: string
+                            createdAt:
+                              type: string
+                            createdBy:
+                              type: string
+                            modifiedAt:
+                              type: string
+                            modifiedBy:
+                              type: string
+                          x-examples:
+                            example-1:
+                              createdAt: '2019-11-21T09:14:23.141Z'
+                              createdBy: ngantk
+                              modifiedAt: '2019-12-03T03:27:39.816Z'
+                              modifiedBy: ngantk
+                              id: d38dc26c-3b66-4c23-93b7-8da7587fb5e1
+                              name: 'VIP '
+                              minPoint: 11
+                              maxPoint: 100
+                              imageUrl: 'https://i.imgur.com/1WDrGZM.png'
+                        rewardPoint:
+                          type: number
+                      x-examples:
+                        example-1:
+                          avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                          code: NU1000005
+                          contactAddress: ''
+                          customerGroup:
+                            createdAt: '2019-10-18T04:39:06.958080Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: '2'
+                            tenantId: da7ad3a6-f2b9-4a48-9422-2b71c63572a3
+                            code: default
+                            name: Nhóm khách hàng mặc định
+                            description: 'nhóm mặc định, sử dụng bảng phí mặc định'
+                            configGroupId: 672b7fbe-6edf-4da8-af06-6bdba181870c
+                          customerLevel:
+                            createdAt: '2019-11-21T09:14:23.141Z'
+                            createdBy: ngantk
+                            modifiedAt: '2019-12-03T03:27:39.816Z'
+                            modifiedBy: ngantk
+                            id: d38dc26c-3b66-4c23-93b7-8da7587fb5e1
+                            name: 'VIP '
+                            minPoint: 11
+                            maxPoint: 100
+                            imageUrl: 'https://i.imgur.com/1WDrGZM.png'
+                          customerStatus: ACTIVE
+                          dob: '2019-12-12T00:00:00Z'
+                          email: nguyenthilanhuong@gobiz.vn
+                          fullname: Lan Hương
+                          gender: female
+                          id: 23
+                          nickname: Lan Hương
+                          phone: 12345678
+                          rewardPoint: 95
+                          username: lanhuong
+                    services:
+                      type: array
+                      items:
+                        title: Shipment-Service
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          code:
+                            type: string
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          position:
+                            type: integer
+                          requires:
+                            type: array
+                            items:
+                              type: string
+                          excludes:
+                            type: array
+                            items:
+                              type: string
+                          serviceGroup:
+                            title: Service-Group
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              code:
+                                type: string
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              position:
+                                type: integer
+                              single:
+                                type: boolean
+                              required:
+                                type: boolean
+                              createdBy:
+                                type: string
+                              createdAt:
+                                type: string
+                              modifiedBy:
+                                type: string
+                              modifiedAt:
+                                type: string
+                            description: Service Group
+                            x-tags:
+                              - model
+                          defaultApplied:
+                            type: boolean
+                          needApprove:
+                            type: boolean
+                          shipping:
+                            type: boolean
+                          approved:
+                            type: boolean
+                        x-tags:
+                          - model
+                    image:
+                      type: string
+                    status:
+                      type: string
+                    code:
+                      type: string
+                    remark:
+                      type: string
+                    note:
+                      type: string
+                    provisionalAmount:
+                      type: number
+                    totalFee:
+                      type: number
+                    totalUnpaid:
+                      type: number
+                    timestamp:
+                      type: string
+                    totalValue:
+                      type: number
+                    address:
+                      title: Shipment-Address
+                      type: object
+                      x-tags:
+                        - model
+                      properties:
+                        id:
+                          type: integer
+                        fullname:
+                          type: string
+                        phone:
+                          type: string
+                        address:
+                          type: string
+                        location:
+                          title: Location
+                          type: object
+                          x-tags:
+                            - model
+                          properties:
+                            id:
+                              type: string
+                            code:
+                              type: string
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            display:
+                              type: string
+                            position:
+                              type: integer
+                            type:
+                              type: string
+                            parent:
+                              $ref: '#/components/schemas/Location'
+                          x-examples:
+                            example-1:
+                              createdAt: '2019-09-27T09:21:10.503146Z'
+                              createdBy: chaos
+                              modifiedAt: null
+                              modifiedBy: null
+                              id: '11304'
+                              code: '00343'
+                              name: Phường Nhân Chính
+                              description: null
+                              display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+                              position: 5
+                              type: WARD
+                              parent:
+                                createdAt: '2019-09-27T09:21:10.503146Z'
+                                createdBy: chaos
+                                modifiedAt: null
+                                modifiedBy: null
+                                id: '132'
+                                code: 9
+                                name: Quận Thanh Xuân
+                                description: null
+                                display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+                                position: 2
+                                type: DISTRICT
+                                parent:
+                                  createdAt: '2019-09-27T09:21:10.503146Z'
+                                  createdBy: chaos
+                                  modifiedAt: null
+                                  modifiedBy: null
+                                  id: '35'
+                                  code: '01'
+                                  name: Thành phố Hà Nội
+                                  description: null
+                                  display: Thành phố Hà Nội
+                                  position: 0
+                                  type: PROVINCE
+                                  parent: null
+                                  language: null
+                                language: null
+                              language: null
+                        note:
+                          type: string
+                        hash:
+                          type: string
+                        createdBy:
+                          type: string
+                        createdAt:
+                          type: string
+                        modifiedBy:
+                          type: string
+                        modifiedAt:
+                          type: string
+                      x-examples:
+                        example-1:
+                          createdAt: '2020-01-03T03:53:24.450Z'
+                          createdBy: lanhuong
+                          modifiedAt: '2020-01-03T03:53:24.450Z'
+                          modifiedBy: lanhuong
+                          id: 26
+                          fullname: Lan Hương
+                          phone: 988888888
+                          address: 164 Khuất Duy Tiến
+                          location:
+                            createdAt: '2019-09-27T09:21:10.503146Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: '11304'
+                            code: '00343'
+                            name: Phường Nhân Chính
+                            description: null
+                            display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+                            position: 5
+                            type: WARD
+                            parent:
+                              createdAt: '2019-09-27T09:21:10.503146Z'
+                              createdBy: chaos
+                              modifiedAt: null
+                              modifiedBy: null
+                              id: '132'
+                              code: 9
+                              name: Quận Thanh Xuân
+                              description: null
+                              display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+                              position: 2
+                              type: DISTRICT
+                              parent:
+                                createdAt: '2019-09-27T09:21:10.503146Z'
+                                createdBy: chaos
+                                modifiedAt: null
+                                modifiedBy: null
+                                id: '35'
+                                code: '01'
+                                name: Thành phố Hà Nội
+                                description: null
+                                display: Thành phố Hà Nội
+                                position: 0
+                                type: PROVINCE
+                                parent: null
+                                language: null
+                              language: null
+                            language: null
+                          note: ''
+                          hash: 394a9ed64afc273946ba341962433873
+                    exchangeRate:
+                      type: number
+                    actualWeight:
+                      type: number
+                    volumetric:
+                      type: number
+                    declareValue:
+                      type: number
+                  x-examples:
+                    example-1:
+                      createdAt: '2020-01-03T03:53:24.444Z'
+                      createdBy: lanhuong
+                      modifiedAt: '2020-01-03T03:53:24.471Z'
+                      modifiedBy: lanhuong
+                      customer:
+                        avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                        code: NU1000005
+                        contactAddress: ''
+                        customerGroup: null
+                        customerLevel: null
+                        customerStatus: ACTIVE
+                        dob: '2019-12-12T00:00:00Z'
+                        email: nguyenthilanhuong@gobiz.vn
+                        fullname: Lan Hương
+                        gender: female
+                        id: 23
+                        nickname: Lan Hương
+                        phone: 12345678
+                        rewardPoint: null
+                        username: lanhuong
+                      services:
+                        - createdAt: '2019-05-16T11:20:30.688199Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 1
+                          code: cargo_insurance
+                          name: Phí bảo hiểm hàng hóa
+                          description: null
+                          position: 1
+                          requires: []
+                          excludes: []
+                          serviceGroup: null
+                          defaultApplied: false
+                          needApprove: false
+                          shipping: false
+                          approved: true
+                        - createdAt: '2019-05-16T11:20:30.688199Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 4
+                          code: express_shipping
+                          name: Vận chuyển nhanh
+                          description: null
+                          position: 3
+                          requires: []
+                          excludes: []
+                          serviceGroup:
+                            createdAt: '2019-09-27T09:21:10.503146Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: 2
+                            code: shipping_group
+                            name: Dịch vụ chuyển phát
+                            description: null
+                            position: null
+                            single: true
+                            required: true
+                          defaultApplied: false
+                          needApprove: false
+                          shipping: true
+                          approved: true
+                        - createdAt: '2019-05-16T11:20:30.688199Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 11
+                          code: standard_packaging
+                          name: Đóng gỗ chung
+                          description: null
+                          position: 6
+                          requires: []
+                          excludes: []
+                          serviceGroup:
+                            createdAt: '2019-09-27T09:21:10.503146Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: 1
+                            code: packaging_group
+                            name: Dịch vụ đóng hàng
+                            description: null
+                            position: null
+                            single: true
+                            required: false
+                          defaultApplied: false
+                          needApprove: false
+                          shipping: false
+                          approved: true
+                      image: null
+                      status: ACCEPTED
+                      code: BG0HZRV_KG
+                      remark: null
+                      note: null
+                      provisionalAmount: 10000
+                      totalFee: 10000
+                      totalUnpaid: 10000
+                      timestamp: '2020-01-03T03:53:24.418Z'
+                      totalValue: null
+                      address:
+                        createdAt: '2020-01-03T03:53:24.450Z'
+                        createdBy: lanhuong
+                        modifiedAt: '2020-01-03T03:53:24.450Z'
+                        modifiedBy: lanhuong
+                        id: 26
+                        fullname: Lan Hương
+                        phone: 988888888
+                        address: 164 Khuất Duy Tiến
+                        location:
+                          createdAt: '2019-09-27T09:21:10.503146Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: '11304'
+                          code: '00343'
+                          name: Phường Nhân Chính
+                          description: null
+                          display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+                          position: 5
+                          type: WARD
+                          parent:
+                            createdAt: '2019-09-27T09:21:10.503146Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: '132'
+                            code: 9
+                            name: Quận Thanh Xuân
+                            description: null
+                            display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+                            position: 2
+                            type: DISTRICT
+                            parent:
+                              createdAt: '2019-09-27T09:21:10.503146Z'
+                              createdBy: chaos
+                              modifiedAt: null
+                              modifiedBy: null
+                              id: '35'
+                              code: '01'
+                              name: Thành phố Hà Nội
+                              description: null
+                              display: Thành phố Hà Nội
+                              position: 0
+                              type: PROVINCE
+                              parent: null
+                              language: null
+                            language: null
+                          language: null
+                        note: ''
+                        hash: 394a9ed64afc273946ba341962433873
+                      exchangeRate: 3000
+                      actualWeight: null
+                      volumetric: null
+                      declareValue: null
+              examples:
+                example-1:
+                  value:
+                    - createdAt: '2020-01-03T03:53:24.444Z'
+                      createdBy: lanhuong
+                      modifiedAt: '2020-01-03T03:53:24.471Z'
+                      modifiedBy: lanhuong
+                      customer:
+                        avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                        code: NU1000005
+                        contactAddress: ''
+                        customerGroup: null
+                        customerLevel: null
+                        customerStatus: ACTIVE
+                        dob: '2019-12-12T00:00:00Z'
+                        email: nguyenthilanhuong@gobiz.vn
+                        fullname: Lan Hương
+                        gender: female
+                        id: 23
+                        nickname: Lan Hương
+                        phone: 12345678
+                        rewardPoint: null
+                        username: lanhuong
+                      services:
+                        - createdAt: '2019-05-16T11:20:30.688199Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 1
+                          code: cargo_insurance
+                          name: Phí bảo hiểm hàng hóa
+                          description: null
+                          position: 1
+                          requires: []
+                          excludes: []
+                          serviceGroup: null
+                          defaultApplied: false
+                          needApprove: false
+                          shipping: false
+                          approved: true
+                        - createdAt: '2019-05-16T11:20:30.688199Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 4
+                          code: express_shipping
+                          name: Vận chuyển nhanh
+                          description: null
+                          position: 3
+                          requires: []
+                          excludes: []
+                          serviceGroup:
+                            createdAt: '2019-09-27T09:21:10.503146Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: 2
+                            code: shipping_group
+                            name: Dịch vụ chuyển phát
+                            description: null
+                            position: null
+                            single: true
+                            required: true
+                          defaultApplied: false
+                          needApprove: false
+                          shipping: true
+                          approved: true
+                        - createdAt: '2019-05-16T11:20:30.688199Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: 11
+                          code: standard_packaging
+                          name: Đóng gỗ chung
+                          description: null
+                          position: 6
+                          requires: []
+                          excludes: []
+                          serviceGroup:
+                            createdAt: '2019-09-27T09:21:10.503146Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: 1
+                            code: packaging_group
+                            name: Dịch vụ đóng hàng
+                            description: null
+                            position: null
+                            single: true
+                            required: false
+                          defaultApplied: false
+                          needApprove: false
+                          shipping: false
+                          approved: true
+                      image: null
+                      status: ACCEPTED
+                      code: BG0HZRV_KG
+                      remark: null
+                      note: null
+                      provisionalAmount: 10000
+                      totalFee: 10000
+                      totalUnpaid: 10000
+                      timestamp: '2020-01-03T03:53:24.418Z'
+                      totalValue: null
+                      address:
+                        createdAt: '2020-01-03T03:53:24.450Z'
+                        createdBy: lanhuong
+                        modifiedAt: '2020-01-03T03:53:24.450Z'
+                        modifiedBy: lanhuong
+                        id: 26
+                        fullname: Lan Hương
+                        phone: 988888888
+                        address: 164 Khuất Duy Tiến
+                        location:
+                          createdAt: '2019-09-27T09:21:10.503146Z'
+                          createdBy: chaos
+                          modifiedAt: null
+                          modifiedBy: null
+                          id: '11304'
+                          code: '00343'
+                          name: Phường Nhân Chính
+                          description: null
+                          display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+                          position: 5
+                          type: WARD
+                          parent:
+                            createdAt: '2019-09-27T09:21:10.503146Z'
+                            createdBy: chaos
+                            modifiedAt: null
+                            modifiedBy: null
+                            id: '132'
+                            code: 9
+                            name: Quận Thanh Xuân
+                            description: null
+                            display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+                            position: 2
+                            type: DISTRICT
+                            parent:
+                              createdAt: '2019-09-27T09:21:10.503146Z'
+                              createdBy: chaos
+                              modifiedAt: null
+                              modifiedBy: null
+                              id: '35'
+                              code: '01'
+                              name: Thành phố Hà Nội
+                              description: null
+                              display: Thành phố Hà Nội
+                              position: 0
+                              type: PROVINCE
+                              parent: null
+                              language: null
+                            language: null
+                          language: null
+                        note: ''
+                        hash: 394a9ed64afc273946ba341962433873
+                      exchangeRate: 3000
+                      actualWeight: null
+                      volumetric: null
+                      declareValue: null
+      tags:
+        - Shipment
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: code
+        - schema:
+            type: string
+          in: query
+          name: timestampFrom
+        - schema:
+            type: string
+          in: query
+          name: timestampTo
+        - schema:
+            type: array
+            items:
+              type: string
+          in: query
+          name: services
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+        - schema:
+            type: array
+            items:
+              type: string
+          in: query
+          name: statuses
+  '/api/customer/shipments/{code}':
+    parameters:
+      - schema:
+          type: string
+        name: code
+        in: path
+        required: true
+    get:
+      summary: Customer get detail shipment
+      operationId: get-api-customer-shipments-code
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer-Shipment'
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+      tags:
+        - Shipment
+      description: ''
+  /api/categories/shipment_services:
+    get:
+      summary: Get all shipment service
+      tags:
+        - Category
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category-Shipment-Service'
+      operationId: get-api-categories-shipment_services
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+  /api/customer/profile:
+    get:
+      summary: 1. Get Customer Profile
+      tags:
+        - Customer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+      operationId: get-api-customer-profile
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+  /api/customer/cart:
+    post:
+      summary: 1. Add item to cart
+      operationId: post-api-customer-cart
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart-Merchant'
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                originalId:
+                  type: string
+                name:
+                  type: string
+                originalName:
+                  type: string
+                image:
+                  type: string
+                url:
+                  type: string
+                variantProperties:
+                  $ref: '#/components/schemas/Variant-Properties'
+                variantImage:
+                  type: string
+                stock:
+                  type: integer
+                quantity:
+                  type: integer
+                originalPrice:
+                  type: number
+                salePrice:
+                  type: number
+                currency:
+                  type: string
+                batchSize:
+                  type: integer
+                minQuantity:
+                  type: integer
+                pricePolicy:
+                  $ref: '#/components/schemas/Price-Policy'
+                skuId:
+                  type: string
+                specId:
+                  type: string
+                merchant:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    marketplace:
+                      type: string
+                    url:
+                      type: string
+                    contacts:
+                      type: array
+                      items:
+                        type: object
+                  required:
+                    - id
+                    - name
+                    - marketplace
+              required:
+                - originalId
+                - originalPrice
+                - salePrice
+      tags:
+        - Order
+  /oauth/token:
+    post:
+      summary: 0. Get token / Login
+      operationId: post-oauth-token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type: integer
+                  scope:
+                    type: string
+                  jti:
+                    type: string
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: grant_type
+          description: password
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: scope
+          description: all
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: client_id
+          description: tenant id
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: username
+          description: username
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: password
+          description: password
+          required: true
+      description: API lấy token
+      tags:
+        - Customer
+components:
+  schemas:
+    Draft-Shipment:
+      title: Draft-Shipment
+      type: object
+      x-tags:
+        - model
+      description: ''
+      properties:
+        id:
+          type: string
+        exchangeRate:
+          type: number
+        totalFee:
+          type: number
+        configGroupId:
+          type: string
+        addressId:
+          type: integer
+        services:
+          type: array
+          items:
+            title: Shipment-Service
+            type: object
+            properties:
+              id:
+                type: integer
+              code:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              position:
+                type: integer
+              requires:
+                type: array
+                items:
+                  type: string
+              excludes:
+                type: array
+                items:
+                  type: string
+              serviceGroup:
+                title: Service-Group
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  code:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  position:
+                    type: integer
+                  single:
+                    type: boolean
+                  required:
+                    type: boolean
+                  createdBy:
+                    type: string
+                  createdAt:
+                    type: string
+                  modifiedBy:
+                    type: string
+                  modifiedAt:
+                    type: string
+                description: Service Group
+                x-tags:
+                  - model
+              defaultApplied:
+                type: boolean
+              needApprove:
+                type: boolean
+              shipping:
+                type: boolean
+              approved:
+                type: boolean
+            x-tags:
+              - model
+        fees:
+          type: array
+          items:
+            title: Draft-Shipment-Fee
+            type: object
+            properties:
+              id:
+                type: string
+              feeType:
+                type: string
+              service:
+                type: string
+              provisionalAmount:
+                type: number
+            x-tags:
+              - model
+            description: Draft shipment fee
+        createdBy:
+          type: string
+        createdAt:
+          type: string
+        modifiedBy:
+          type: string
+        modifiedAt:
+          type: string
+    Shipment-Service:
+      title: Shipment-Service
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        position:
+          type: integer
+        requires:
+          type: array
+          items:
+            type: string
+        excludes:
+          type: array
+          items:
+            type: string
+        serviceGroup:
+          title: Service-Group
+          type: object
+          properties:
+            id:
+              type: integer
+            code:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            position:
+              type: integer
+            single:
+              type: boolean
+            required:
+              type: boolean
+            createdBy:
+              type: string
+            createdAt:
+              type: string
+            modifiedBy:
+              type: string
+            modifiedAt:
+              type: string
+          description: Service Group
+          x-tags:
+            - model
+        defaultApplied:
+          type: boolean
+        needApprove:
+          type: boolean
+        shipping:
+          type: boolean
+        approved:
+          type: boolean
+      x-tags:
+        - model
+    Service-Group:
+      title: Service-Group
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        position:
+          type: integer
+        single:
+          type: boolean
+        required:
+          type: boolean
+        createdBy:
+          type: string
+        createdAt:
+          type: string
+        modifiedBy:
+          type: string
+        modifiedAt:
+          type: string
+      description: Service Group
+      x-tags:
+        - model
+    Draft-Shipment-Fee:
+      title: Draft-Shipment-Fee
+      type: object
+      properties:
+        id:
+          type: string
+        feeType:
+          type: string
+        service:
+          type: string
+        provisionalAmount:
+          type: number
+      x-tags:
+        - model
+      description: Draft shipment fee
+    Location:
+      title: Location
+      type: object
+      x-tags:
+        - model
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        display:
+          type: string
+        position:
+          type: integer
+        type:
+          type: string
+        parent:
+          $ref: '#/components/schemas/Location'
+      x-examples:
+        example-1:
+          createdAt: '2019-09-27T09:21:10.503146Z'
+          createdBy: chaos
+          modifiedAt: null
+          modifiedBy: null
+          id: '11304'
+          code: '00343'
+          name: Phường Nhân Chính
+          description: null
+          display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+          position: 5
+          type: WARD
+          parent:
+            createdAt: '2019-09-27T09:21:10.503146Z'
+            createdBy: chaos
+            modifiedAt: null
+            modifiedBy: null
+            id: '132'
+            code: 9
+            name: Quận Thanh Xuân
+            description: null
+            display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+            position: 2
+            type: DISTRICT
+            parent:
+              createdAt: '2019-09-27T09:21:10.503146Z'
+              createdBy: chaos
+              modifiedAt: null
+              modifiedBy: null
+              id: '35'
+              code: '01'
+              name: Thành phố Hà Nội
+              description: null
+              display: Thành phố Hà Nội
+              position: 0
+              type: PROVINCE
+              parent: null
+              language: null
+            language: null
+          language: null
+    Category-Shipment-Service:
+      title: Category-Shipment-Service
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        position:
+          type: integer
+        requires:
+          type: array
+          items:
+            type: string
+        excludes:
+          type: array
+          items:
+            type: string
+        serviceGroup:
+          $ref: '#/components/schemas/Service-Group'
+        defaultApplied:
+          type: boolean
+        needApprove:
+          type: boolean
+        approved:
+          type: boolean
+        createdBy:
+          type: string
+        createdAt:
+          type: string
+        modifiedBy:
+          type: string
+        modifiedAt:
+          type: string
+      x-tags:
+        - Category
+    Customer-Shipment:
+      title: Customer-Shipment
+      type: object
+      x-tags:
+        - model
+      properties:
+        customer:
+          title: Simple-Customer
+          type: object
+          x-tags:
+            - model
+          properties:
+            id:
+              type: integer
+            username:
+              type: string
+            email:
+              type: string
+            fullname:
+              type: string
+            nickname:
+              type: string
+            avatar:
+              type: string
+            phone:
+              type: string
+            code:
+              type: string
+            dob:
+              type: string
+            contactAddress:
+              type: string
+            gender:
+              type: string
+            customerStatus:
+              type: string
+            customerGroup:
+              title: Customer-Group
+              type: object
+              properties:
+                id:
+                  type: string
+                tenantId:
+                  type: string
+                code:
+                  type: string
+                name:
+                  type: string
+                description:
+                  type: string
+                configGroupId:
+                  type: string
+                createdAt:
+                  type: string
+                createdBy:
+                  type: string
+                modifiedAt:
+                  type: string
+                modifiedBy:
+                  type: string
+              x-examples:
+                example-1:
+                  createdAt: '2019-10-18T04:39:06.958080Z'
+                  createdBy: chaos
+                  modifiedAt: null
+                  modifiedBy: null
+                  id: '2'
+                  tenantId: da7ad3a6-f2b9-4a48-9422-2b71c63572a3
+                  code: default
+                  name: Nhóm khách hàng mặc định
+                  description: 'nhóm mặc định, sử dụng bảng phí mặc định'
+                  configGroupId: 672b7fbe-6edf-4da8-af06-6bdba181870c
+              x-tags:
+                - model
+            customerLevel:
+              title: Customer-Level
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                minPoint:
+                  type: number
+                maxPoint:
+                  type: number
+                imageUrl:
+                  type: string
+                createdAt:
+                  type: string
+                createdBy:
+                  type: string
+                modifiedAt:
+                  type: string
+                modifiedBy:
+                  type: string
+              x-examples:
+                example-1:
+                  createdAt: '2019-11-21T09:14:23.141Z'
+                  createdBy: ngantk
+                  modifiedAt: '2019-12-03T03:27:39.816Z'
+                  modifiedBy: ngantk
+                  id: d38dc26c-3b66-4c23-93b7-8da7587fb5e1
+                  name: 'VIP '
+                  minPoint: 11
+                  maxPoint: 100
+                  imageUrl: 'https://i.imgur.com/1WDrGZM.png'
+            rewardPoint:
+              type: number
+          x-examples:
+            example-1:
+              avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+              code: NU1000005
+              contactAddress: ''
+              customerGroup:
+                createdAt: '2019-10-18T04:39:06.958080Z'
+                createdBy: chaos
+                modifiedAt: null
+                modifiedBy: null
+                id: '2'
+                tenantId: da7ad3a6-f2b9-4a48-9422-2b71c63572a3
+                code: default
+                name: Nhóm khách hàng mặc định
+                description: 'nhóm mặc định, sử dụng bảng phí mặc định'
+                configGroupId: 672b7fbe-6edf-4da8-af06-6bdba181870c
+              customerLevel:
+                createdAt: '2019-11-21T09:14:23.141Z'
+                createdBy: ngantk
+                modifiedAt: '2019-12-03T03:27:39.816Z'
+                modifiedBy: ngantk
+                id: d38dc26c-3b66-4c23-93b7-8da7587fb5e1
+                name: 'VIP '
+                minPoint: 11
+                maxPoint: 100
+                imageUrl: 'https://i.imgur.com/1WDrGZM.png'
+              customerStatus: ACTIVE
+              dob: '2019-12-12T00:00:00Z'
+              email: nguyenthilanhuong@gobiz.vn
+              fullname: Lan Hương
+              gender: female
+              id: 23
+              nickname: Lan Hương
+              phone: 12345678
+              rewardPoint: 95
+              username: lanhuong
+        services:
+          type: array
+          items:
+            title: Shipment-Service
+            type: object
+            properties:
+              id:
+                type: integer
+              code:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              position:
+                type: integer
+              requires:
+                type: array
+                items:
+                  type: string
+              excludes:
+                type: array
+                items:
+                  type: string
+              serviceGroup:
+                title: Service-Group
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  code:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  position:
+                    type: integer
+                  single:
+                    type: boolean
+                  required:
+                    type: boolean
+                  createdBy:
+                    type: string
+                  createdAt:
+                    type: string
+                  modifiedBy:
+                    type: string
+                  modifiedAt:
+                    type: string
+                description: Service Group
+                x-tags:
+                  - model
+              defaultApplied:
+                type: boolean
+              needApprove:
+                type: boolean
+              shipping:
+                type: boolean
+              approved:
+                type: boolean
+            x-tags:
+              - model
+        image:
+          type: string
+        status:
+          type: string
+        code:
+          type: string
+        remark:
+          type: string
+        note:
+          type: string
+        provisionalAmount:
+          type: number
+        totalFee:
+          type: number
+        totalUnpaid:
+          type: number
+        timestamp:
+          type: string
+        totalValue:
+          type: number
+        address:
+          title: Shipment-Address
+          type: object
+          x-tags:
+            - model
+          properties:
+            id:
+              type: integer
+            fullname:
+              type: string
+            phone:
+              type: string
+            address:
+              type: string
+            location:
+              title: Location
+              type: object
+              x-tags:
+                - model
+              properties:
+                id:
+                  type: string
+                code:
+                  type: string
+                name:
+                  type: string
+                description:
+                  type: string
+                display:
+                  type: string
+                position:
+                  type: integer
+                type:
+                  type: string
+                parent:
+                  $ref: '#/components/schemas/Location'
+              x-examples:
+                example-1:
+                  createdAt: '2019-09-27T09:21:10.503146Z'
+                  createdBy: chaos
+                  modifiedAt: null
+                  modifiedBy: null
+                  id: '11304'
+                  code: '00343'
+                  name: Phường Nhân Chính
+                  description: null
+                  display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+                  position: 5
+                  type: WARD
+                  parent:
+                    createdAt: '2019-09-27T09:21:10.503146Z'
+                    createdBy: chaos
+                    modifiedAt: null
+                    modifiedBy: null
+                    id: '132'
+                    code: 9
+                    name: Quận Thanh Xuân
+                    description: null
+                    display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+                    position: 2
+                    type: DISTRICT
+                    parent:
+                      createdAt: '2019-09-27T09:21:10.503146Z'
+                      createdBy: chaos
+                      modifiedAt: null
+                      modifiedBy: null
+                      id: '35'
+                      code: '01'
+                      name: Thành phố Hà Nội
+                      description: null
+                      display: Thành phố Hà Nội
+                      position: 0
+                      type: PROVINCE
+                      parent: null
+                      language: null
+                    language: null
+                  language: null
+            note:
+              type: string
+            hash:
+              type: string
+            createdBy:
+              type: string
+            createdAt:
+              type: string
+            modifiedBy:
+              type: string
+            modifiedAt:
+              type: string
+          x-examples:
+            example-1:
+              createdAt: '2020-01-03T03:53:24.450Z'
+              createdBy: lanhuong
+              modifiedAt: '2020-01-03T03:53:24.450Z'
+              modifiedBy: lanhuong
+              id: 26
+              fullname: Lan Hương
+              phone: 988888888
+              address: 164 Khuất Duy Tiến
+              location:
+                createdAt: '2019-09-27T09:21:10.503146Z'
+                createdBy: chaos
+                modifiedAt: null
+                modifiedBy: null
+                id: '11304'
+                code: '00343'
+                name: Phường Nhân Chính
+                description: null
+                display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+                position: 5
+                type: WARD
+                parent:
+                  createdAt: '2019-09-27T09:21:10.503146Z'
+                  createdBy: chaos
+                  modifiedAt: null
+                  modifiedBy: null
+                  id: '132'
+                  code: 9
+                  name: Quận Thanh Xuân
+                  description: null
+                  display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+                  position: 2
+                  type: DISTRICT
+                  parent:
+                    createdAt: '2019-09-27T09:21:10.503146Z'
+                    createdBy: chaos
+                    modifiedAt: null
+                    modifiedBy: null
+                    id: '35'
+                    code: '01'
+                    name: Thành phố Hà Nội
+                    description: null
+                    display: Thành phố Hà Nội
+                    position: 0
+                    type: PROVINCE
+                    parent: null
+                    language: null
+                  language: null
+                language: null
+              note: ''
+              hash: 394a9ed64afc273946ba341962433873
+        exchangeRate:
+          type: number
+        actualWeight:
+          type: number
+        volumetric:
+          type: number
+        declareValue:
+          type: number
+      x-examples:
+        example-1:
+          createdAt: '2020-01-03T03:53:24.444Z'
+          createdBy: lanhuong
+          modifiedAt: '2020-01-03T03:53:24.471Z'
+          modifiedBy: lanhuong
+          customer:
+            avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+            code: NU1000005
+            contactAddress: ''
+            customerGroup: null
+            customerLevel: null
+            customerStatus: ACTIVE
+            dob: '2019-12-12T00:00:00Z'
+            email: nguyenthilanhuong@gobiz.vn
+            fullname: Lan Hương
+            gender: female
+            id: 23
+            nickname: Lan Hương
+            phone: 12345678
+            rewardPoint: null
+            username: lanhuong
+          services:
+            - createdAt: '2019-05-16T11:20:30.688199Z'
+              createdBy: chaos
+              modifiedAt: null
+              modifiedBy: null
+              id: 1
+              code: cargo_insurance
+              name: Phí bảo hiểm hàng hóa
+              description: null
+              position: 1
+              requires: []
+              excludes: []
+              serviceGroup: null
+              defaultApplied: false
+              needApprove: false
+              shipping: false
+              approved: true
+            - createdAt: '2019-05-16T11:20:30.688199Z'
+              createdBy: chaos
+              modifiedAt: null
+              modifiedBy: null
+              id: 4
+              code: express_shipping
+              name: Vận chuyển nhanh
+              description: null
+              position: 3
+              requires: []
+              excludes: []
+              serviceGroup:
+                createdAt: '2019-09-27T09:21:10.503146Z'
+                createdBy: chaos
+                modifiedAt: null
+                modifiedBy: null
+                id: 2
+                code: shipping_group
+                name: Dịch vụ chuyển phát
+                description: null
+                position: null
+                single: true
+                required: true
+              defaultApplied: false
+              needApprove: false
+              shipping: true
+              approved: true
+            - createdAt: '2019-05-16T11:20:30.688199Z'
+              createdBy: chaos
+              modifiedAt: null
+              modifiedBy: null
+              id: 11
+              code: standard_packaging
+              name: Đóng gỗ chung
+              description: null
+              position: 6
+              requires: []
+              excludes: []
+              serviceGroup:
+                createdAt: '2019-09-27T09:21:10.503146Z'
+                createdBy: chaos
+                modifiedAt: null
+                modifiedBy: null
+                id: 1
+                code: packaging_group
+                name: Dịch vụ đóng hàng
+                description: null
+                position: null
+                single: true
+                required: false
+              defaultApplied: false
+              needApprove: false
+              shipping: false
+              approved: true
+          image: null
+          status: ACCEPTED
+          code: BG0HZRV_KG
+          remark: null
+          note: null
+          provisionalAmount: 10000
+          totalFee: 10000
+          totalUnpaid: 10000
+          timestamp: '2020-01-03T03:53:24.418Z'
+          totalValue: null
+          address:
+            createdAt: '2020-01-03T03:53:24.450Z'
+            createdBy: lanhuong
+            modifiedAt: '2020-01-03T03:53:24.450Z'
+            modifiedBy: lanhuong
+            id: 26
+            fullname: Lan Hương
+            phone: 988888888
+            address: 164 Khuất Duy Tiến
+            location:
+              createdAt: '2019-09-27T09:21:10.503146Z'
+              createdBy: chaos
+              modifiedAt: null
+              modifiedBy: null
+              id: '11304'
+              code: '00343'
+              name: Phường Nhân Chính
+              description: null
+              display: 'Phường Nhân Chính, Quận Thanh Xuân, Thành phố Hà Nội'
+              position: 5
+              type: WARD
+              parent:
+                createdAt: '2019-09-27T09:21:10.503146Z'
+                createdBy: chaos
+                modifiedAt: null
+                modifiedBy: null
+                id: '132'
+                code: 9
+                name: Quận Thanh Xuân
+                description: null
+                display: 'Quận Thanh Xuân, Thành phố Hà Nội'
+                position: 2
+                type: DISTRICT
+                parent:
+                  createdAt: '2019-09-27T09:21:10.503146Z'
+                  createdBy: chaos
+                  modifiedAt: null
+                  modifiedBy: null
+                  id: '35'
+                  code: '01'
+                  name: Thành phố Hà Nội
+                  description: null
+                  display: Thành phố Hà Nội
+                  position: 0
+                  type: PROVINCE
+                  parent: null
+                  language: null
+                language: null
+              language: null
+            note: ''
+            hash: 394a9ed64afc273946ba341962433873
+          exchangeRate: 3000
+          actualWeight: null
+          volumetric: null
+          declareValue: null
+    Customer:
+      title: Customer
+      type: object
+      x-tags:
+        - Models
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        fullname:
+          type: string
+        nickname:
+          type: string
+        avatar:
+          type: string
+        phone:
+          type: string
+        code:
+          type: string
+        dob:
+          type: string
+        contactAddress:
+          type: string
+        gender:
+          type: string
+        customerStatus:
+          type: string
+        customerGroup:
+          $ref: '#/components/schemas/Customer-Group'
+        customerLevel:
+          $ref: '#/components/schemas/Customer-Level'
+        rewardPoint:
+          type: number
+        id:
+          type: integer
+    Customer-Group:
+      title: Customer-Group
+      type: object
+      x-tags:
+        - Models
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        configGroupId:
+          type: string
+        id:
+          type: string
+    Customer-Level:
+      title: Customer-Level
+      type: object
+      properties:
+        name:
+          type: string
+        minPoint:
+          type: string
+        maxPoint:
+          type: string
+        imageUrl:
+          type: string
+        id:
+          type: string
+      x-tags:
+        - Models
+    Cart-Product:
+      title: Cart-Product
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        merchant:
+          type: string
+        originalId:
+          type: string
+        originalName:
+          type: string
+        image:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+        batchSize:
+          type: integer
+        minQuantity:
+          type: integer
+        skus:
+          $ref: '#/components/schemas/Cart-Sku'
+      x-tags:
+        - Models
+    Cart-Sku:
+      title: Cart-Sku
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        variantProperties:
+          $ref: '#/components/schemas/Variant-Properties'
+        image:
+          type: string
+        remark:
+          type: string
+        note:
+          type: string
+        currency:
+          type: string
+        quantity:
+          type: integer
+        stock:
+          type: integer
+        originalPrice:
+          type: number
+        exchangedOriginalPrice:
+          type: number
+        salePrice:
+          type: number
+        exchangedSalePrice:
+          type: number
+        totalAmount:
+          type: number
+        exchangedTotalAmount:
+          type: number
+        pricePolicy:
+          $ref: '#/components/schemas/Price-Policy'
+        timestamp:
+          type: string
+      x-tags:
+        - Models
+    Variant-Properties:
+      title: Variant-Properties
+      type: object
+      properties:
+        id:
+          type: string
+        originalName:
+          type: string
+        name:
+          type: string
+        originalValue:
+          type: string
+        value:
+          type: string
+      x-tags:
+        - Models
+    Price-Policy:
+      title: Price-Policy
+      type: object
+      x-tags:
+        - Models
+      properties:
+        min:
+          type: string
+        max:
+          type: string
+        originalPrice:
+          type: number
+        currency:
+          type: string
+        salePrice:
+          type: string
+    Order-Service:
+      title: Order-Service
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        position:
+          type: integer
+        requires:
+          type: array
+          items:
+            type: string
+        dependencies:
+          type: array
+          items:
+            type: string
+        excludes:
+          type: array
+          items:
+            type: string
+        serviceGroup:
+          $ref: '#/components/schemas/Service-Group'
+        shippingClass:
+          $ref: '#/components/schemas/Shipping-Class'
+        defaultApplied:
+          type: boolean
+        needApprove:
+          type: boolean
+        shipping:
+          type: boolean
+        approved:
+          type: boolean
+        serviceInfo:
+          type: string
+      x-tags:
+        - Models
+    Shipping-Class:
+      title: Shipping-Class
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        position:
+          type: string
+        calculatedByFormula:
+          type: boolean
+      x-tags:
+        - Models
+    Cart-Merchant:
+      title: Cart-Merchant
+      type: object
+      x-tags:
+        - Models
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+        marketplace:
+          $ref: '#/components/schemas/Marketplace'
+        url:
+          type: string
+        contact:
+          type: array
+          items:
+            type: object
+        products:
+          $ref: '#/components/schemas/Cart-Product'
+        services:
+          $ref: '#/components/schemas/Order-Service'
+        remark:
+          type: string
+        note:
+          type: string
+        totalValue:
+          type: number
+        totalFee:
+          type: number
+        exchangedTotalValue:
+          type: number
+        grandTotal:
+          type: number
+    Marketplace:
+      title: Marketplace
+      type: object
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        url:
+          type: string
+        currency:
+          type: string
+        orderValueThreshold:
+          type: number
+      x-tags:
+        - Models
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
