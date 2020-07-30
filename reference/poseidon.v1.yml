@@ -6892,6 +6892,68 @@ paths:
               type: object
               properties: {}
         description: ''
+  /api/internal/orders/charge:
+    post:
+      summary: Charge order's delivery fee
+      operationId: post-api-internal-orders-charge
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Hermes-Transaction-Response'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  status:
+                    type: string
+                  detail:
+                    type: string
+      parameters:
+        - schema:
+            type: string
+          in: header
+          required: true
+          name: X-Tenant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer:
+                  type: string
+                orders:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      orderCode:
+                        type: string
+                      packages:
+                        type: array
+                        items:
+                          type: string
+                shipments:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      orderCode:
+                        type: string
+                      packages:
+                        type: array
+                        items:
+                          type: string
 components:
   schemas:
     Draft-Shipment:
@@ -9312,7 +9374,6 @@ components:
         authorizationCode:
           authorizationUrl: 'https://heracles.gobizdev.com/oauth/authorize'
           tokenUrl: 'https://heracles.gobizdev.com/oauth/token'
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+          scopes: {}
+security:
+  - authenMe: []
