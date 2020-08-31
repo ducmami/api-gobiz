@@ -7324,11 +7324,6 @@ paths:
         name: username
         in: path
         required: true
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-api-internal-customers-username-adjust
     post:
       summary: 2. Internal Customer Adjust
       operationId: post-api-internal-customers-username-adjust
