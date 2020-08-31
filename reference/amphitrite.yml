@@ -514,7 +514,7 @@ paths:
                         type: number
                     x-examples:
                       example-1:
-                        avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                        avatar: '//www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g'
                         code: NU1000005
                         contactAddress: ''
                         customerGroup:
@@ -787,7 +787,7 @@ paths:
                     modifiedAt: '2020-01-03T03:53:24.471Z'
                     modifiedBy: lanhuong
                     customer:
-                      avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                      avatar: '//www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g'
                       code: NU1000005
                       contactAddress: ''
                       customerGroup: null
@@ -946,7 +946,7 @@ paths:
                     modifiedAt: '2020-01-03T03:53:24.471Z'
                     modifiedBy: lanhuong
                     customer:
-                      avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                      avatar: '//www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g'
                       code: NU1000005
                       contactAddress: ''
                       customerGroup: null
@@ -1296,7 +1296,7 @@ paths:
                           type: number
                       x-examples:
                         example-1:
-                          avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                          avatar: '//www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g'
                           code: NU1000005
                           contactAddress: ''
                           customerGroup:
@@ -1569,7 +1569,7 @@ paths:
                       modifiedAt: '2020-01-03T03:53:24.471Z'
                       modifiedBy: lanhuong
                       customer:
-                        avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                        avatar: '//www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g'
                         code: NU1000005
                         contactAddress: ''
                         customerGroup: null
@@ -1728,7 +1728,7 @@ paths:
                       modifiedAt: '2020-01-03T03:53:24.471Z'
                       modifiedBy: lanhuong
                       customer:
-                        avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+                        avatar: '//www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g'
                         code: NU1000005
                         contactAddress: ''
                         customerGroup: null
@@ -2556,7 +2556,7 @@ components:
               type: number
           x-examples:
             example-1:
-              avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+              avatar: '//www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g'
               code: NU1000005
               contactAddress: ''
               customerGroup:
@@ -2829,7 +2829,7 @@ components:
           modifiedAt: '2020-01-03T03:53:24.471Z'
           modifiedBy: lanhuong
           customer:
-            avatar: //www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g
+            avatar: '//www.gravatar.com/avatar/13282dcf0f343a6b5cdfd6e605716073?d=retro&s=256&r=g'
             code: NU1000005
             contactAddress: ''
             customerGroup: null
