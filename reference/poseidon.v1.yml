@@ -7317,6 +7317,58 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Hermes-Transaction-Response'
+  '/api/internal/customers/{username}/adjust':
+    parameters:
+      - schema:
+          type: string
+        name: username
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-api-internal-customers-username-adjust
+    post:
+      summary: 2. Internal Customer Adjust
+      operationId: post-api-internal-customers-username-adjust
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hermes-Transaction-Response'
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+          in: header
+          required: true
+          name: X-Tenant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: string
+                memo:
+                  type: string
+                description:
+                  type: string
+                teller:
+                  type: string
+                  description: Nhân viên tạo giao dịch
+              required:
+                - amount
+                - memo
+                - teller
 components:
   schemas:
     Draft-Shipment:
