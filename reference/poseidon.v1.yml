@@ -7225,6 +7225,8 @@ paths:
         required: true
     patch:
       summary: internal update product
+      tags:
+        - Internal
       operationId: patch-api-internal-orders-code-products-productCode
       responses:
         '200':
@@ -7279,6 +7281,8 @@ paths:
         in: path
         required: true
     post:
+      tags:
+        - Internal
       parameters:
         - schema:
             type: string
@@ -7317,6 +7321,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Hermes-Transaction-Response'
+      summary: 1. Internal Customer Deposit
   '/api/internal/customers/{username}/adjust':
     parameters:
       - schema:
@@ -7326,6 +7331,8 @@ paths:
         required: true
     post:
       summary: 2. Internal Customer Adjust
+      tags:
+        - Internal
       operationId: post-api-internal-customers-username-adjust
       responses:
         '200':
